@@ -28,8 +28,6 @@ export function Summary() {
     },
   );
 
-  console.log(transactions);
-
   return (
     <Container>
       <div>
@@ -50,7 +48,7 @@ export function Summary() {
           <img src={outcomeImg} alt="Entradas" />
         </header>
         <strong>
-          -{" "}
+          {"- "}
           {new Intl.NumberFormat("pt-BR", {
             style: "currency",
             currency: "BRL",

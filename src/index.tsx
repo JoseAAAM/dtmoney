@@ -25,7 +25,15 @@ createServer({
           type: "withdraw",
           amount: 1100,
           category: "Casa",
-          createdAt: new Date("2021-02-12 12:00:00"),
+          createdAt: new Date("2021-02-13 12:00:00"),
+        },
+        {
+          id: 3,
+          title: "Supermercado",
+          type: "withdraw",
+          amount: 300,
+          category: "Compras",
+          createdAt: new Date("2021-02-15 12:00:00"),
         },
       ],
     });

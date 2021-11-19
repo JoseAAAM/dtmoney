@@ -15,6 +15,26 @@ export const GlobalStyle = createGlobalStyle`
     --text-body: #969cb3;
   }
 
+  .custom-success-toast {
+    width: 420px;
+    text-align: center;
+    font-weight: 400;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1rem;
+    color: var(--green);
+    background: var(--background)
+  }
+
+  .custom-error-toast {
+    width: 350px;
+    text-align: center;
+    font-weight: 400;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1rem;
+    color: var(--red);
+    background: var(--background)
+  }
+
   * {
     margin: 0;
     padding: 0;

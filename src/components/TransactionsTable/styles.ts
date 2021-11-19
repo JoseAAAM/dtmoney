@@ -32,6 +32,12 @@ export const Container = styled.div`
       &.withdraw {
         color: var(--red);
       }
+
+      button {
+        display: flex;
+        border: 0;
+        background: transparent;
+      }
     }
   }
 `;

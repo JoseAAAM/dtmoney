@@ -2,6 +2,8 @@ import { FormEvent, useState } from "react";
 import { useTransactions } from "../../hooks/useTransactions";
 
 import Modal from "react-modal";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Container, TransactionTypeContainer, RadialBox } from "./styles";
 
@@ -24,21 +26,43 @@ export function NewTransactionModal({
   const [amount, setAmount] = useState(0);
   const [category, setCategory] = useState("");
 
+  const sucessNotify = () =>
+    toast.success("Transação cadastrada com Sucesso!", {
+      className: "custom-success-toast",
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+    });
+
+  const errorNotify = () =>
+    toast.error("Preencha todos os campos!", {
+      className: "custom-error-toast",
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+    });
+
   async function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
 
-    await createTransaction({
-      title,
-      amount,
-      category,
-      type,
-    });
+    if (!title || !amount || !category) {
+      errorNotify();
+      return;
+    } else {
+      await createTransaction({
+        title,
+        amount,
+        category,
+        type,
+      });
 
-    setTitle("");
-    setAmount(0);
-    setType("deposit");
-    setCategory("");
-    onRequestClose();
+      setTitle("");
+      setAmount(0);
+      setType("deposit");
+      setCategory("");
+      onRequestClose();
+      sucessNotify();
+    }
   }
 
   return (

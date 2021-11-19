@@ -19,6 +19,7 @@ interface TransactionsProviderProps {
 interface TransactionsContextData {
   transactions: Transaction[];
   createTransaction: (transaction: TransactionInput) => Promise<void>;
+  removeTransaction: (createdAt: string) => void;
 }
 
 const TransactionsContext = createContext<TransactionsContextData>(
@@ -44,8 +45,18 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     setTransactions([...transactions, transaction]);
   }
 
+  function removeTransaction(createdAt: string) {
+    const transactionToDontRemove = transactions.filter(
+      transaction => transaction.createdAt !== createdAt,
+    );
+
+    setTransactions(transactionToDontRemove);
+  }
+
   return (
-    <TransactionsContext.Provider value={{ transactions, createTransaction }}>
+    <TransactionsContext.Provider
+      value={{ transactions, createTransaction, removeTransaction }}
+    >
       {children}
     </TransactionsContext.Provider>
   );
